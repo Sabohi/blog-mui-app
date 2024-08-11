@@ -1,7 +1,11 @@
+// External dependencies
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+
+// Internal dependencies
+import { FooterProps } from 'core/models/ui.model';
 
 /**
  * Displays a copyright notice.

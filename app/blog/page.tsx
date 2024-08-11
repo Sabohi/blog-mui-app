@@ -55,7 +55,7 @@ export default function BlogPage() {
             <Box
                 display="flex"
                 justifyContent="center"
-                mt={{ xs: 1, sm: 2, md: 4 }}
+                mt={{ sm: 2, md: 4 }}
             >
                 <PaginationComponent 
                     count={totalPages}

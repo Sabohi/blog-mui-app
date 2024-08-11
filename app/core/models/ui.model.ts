@@ -38,6 +38,11 @@ export interface HeaderProps {
     title: string;
 };
 
+export interface FooterProps {
+    title: string;
+    description: string;
+};
+
 export interface IconButtonWithTooltipProps {
     icon: React.ElementType; 
     title: string;

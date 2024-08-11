@@ -19,7 +19,7 @@ import { destinations } from 'core/config/data';
  */
 function ViewPostPage({ params }: { params: { id: string } }) {
     // Find the post by ID
-    const post = params?.id ? destinations.find((post) => post.id === Number(params.id)) : null;
+    const post = params?.id ? destinations.find((post) => post?.id === Number(params.id)) : null;
 
     return (
         <Container>
