@@ -19,7 +19,7 @@ export type Destination = {
 } | undefined;
 
 export interface CardComponentProps {
-    data: Destination;  
+    data?: Destination;  
 };
 
 export interface ConfirmationDialogProps {
