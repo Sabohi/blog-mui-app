@@ -47,7 +47,7 @@ export default function BlogPage() {
         <Box>
             <Grid container spacing={5}>
                 {destinations.map((destination) => (
-                    <CardComponent data={destination} />
+                    <CardComponent key={destination.id} data={destination} />
                 ))}
             </Grid>
             <Box
