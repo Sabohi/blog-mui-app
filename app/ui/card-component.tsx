@@ -17,22 +17,52 @@ import { CardComponentProps } from 'core/models/ui.model';
 import { CONTENT_LENGTH } from 'core/config/constant';
 import ConfirmationDialog from '@/app/ui/confirmation-dialog'; 
 
+/**
+ * A component that displays a card for a blog post with options to view, edit, or delete.
+ * 
+ * This component shows the blog post's title, a truncated preview of its content, and an image.
+ * It includes interactive buttons for viewing, editing, and deleting the post. A confirmation 
+ * dialog appears when the delete button is clicked to confirm the deletion action.
+ * 
+ * @param {CardComponentProps} props - The properties to configure the card component.
+ * @param {Object} props.data - The data for the blog post.
+ * @param {number} props.data.id - The unique identifier for the blog post.
+ * @param {string} props.data.title - The title of the blog post.
+ * @param {string} props.data.content - The content of the blog post.
+ * @param {string} props.data.image - The URL of the image associated with the blog post.
+ * 
+ * @returns {JSX.Element} The rendered card component with interactive buttons and a confirmation dialog.
+ */
 const CardComponent: React.FC<CardComponentProps> = ({ data }) => {
     const [dialogOpen, setDialogOpen] = useState(false);
 
+    /**
+     * Opens the confirmation dialog for deletion.
+     */
     const handleDeleteClick = () => {
         setDialogOpen(true);
     };
 
+    /**
+     * Closes the confirmation dialog.
+     */
     const handleCloseDialog = () => {
         setDialogOpen(false);
     };
 
+    /**
+     * Confirms the deletion of the blog post and logs the action to the console.
+     */
     const handleConfirmDelete = () => {
         console.log('Deleting blog:', data?.title);
         setDialogOpen(false);
     };
 
+    /**
+     * Truncates the content to a specified length if it exceeds the maximum length.
+     * 
+     * @type {string}
+     */
     const truncatedContent = (data?.content && data.content.length > CONTENT_LENGTH) ? data.content.substring(0, CONTENT_LENGTH) + '...' : data?.content;
 
     return (
@@ -45,10 +75,11 @@ const CardComponent: React.FC<CardComponentProps> = ({ data }) => {
                 <Box
                     sx={{
                         paddingX: 1,
-                        flex: 1, // Make sure the content area takes up remaining space
+                        flex: 1, 
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'space-between',
+                        mt: 1,
                     }}
                 >
                     <Typography variant="subtitle2" component="h2">
@@ -56,7 +87,7 @@ const CardComponent: React.FC<CardComponentProps> = ({ data }) => {
                     </Typography>
                     <Box
                         sx={{
-                            flex: 1, // Allow content area to grow and fill space
+                            flex: 1,
                             display: 'flex',
                             alignItems: 'center',
                         }}
