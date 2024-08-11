@@ -1,7 +1,7 @@
 export interface ButtonComponentProps {
     onClick: () => void;
     text: string;
-    color?: 'primary' | 'secondary',
+    color?: 'primary' | 'secondary' | 'success' | 'error';
     variant?: 'text' | 'outlined' | 'contained';
     size?: 'small' | 'medium' | 'large';
     startIcon?: React.ReactElement;
