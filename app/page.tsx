@@ -1,12 +1,10 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+// internal dependencies
+import BlogPage from './blog/page';
 
-export default function Home() {
+export default function Page() {
   return (
-    <main className={styles.main}>
-      <div>
-        Hello
-      </div>
+    <main>
+      <BlogPage />
     </main>
   );
 }
