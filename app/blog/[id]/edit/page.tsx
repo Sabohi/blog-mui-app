@@ -1,3 +1,10 @@
-export default function Page({ params }: { params: { id: string } }) {
-    return <div>Edit: {params.id}</div>
-}
+// Internal dependencies
+import BlogForm from 'app/blog/blog-form';
+
+function EditPostPage({ params }: { params: { id: string } }){
+    return (
+        <BlogForm id={params?.id}/>
+    );
+};
+
+export default EditPostPage;

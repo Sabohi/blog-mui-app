@@ -9,7 +9,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 // Internal dependencies
 import { ConfirmationDialogProps } from 'core/models/ui.model';
-import ButtonComponent from 'ui/ButtonComponent';
+import ButtonComponent from '@/app/ui/button-component';
 
 const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
     open,
@@ -34,8 +34,8 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
                 </Typography>
             </DialogContent>
             <DialogActions>
-                <ButtonComponent text="Cancel" onClick={onClose} color="primary" startIcon={<CloseIcon fontSize="small" />} />
-                <ButtonComponent text="Confirm" onClick={onConfirm} color="success" startIcon={<DeleteIcon fontSize="small" />} />
+                <ButtonComponent text="Cancel" onClick={onClose} color="primary" size="small" startIcon={<CloseIcon fontSize="small" />} />
+                <ButtonComponent text="Confirm" onClick={onConfirm} color="success" size="small" startIcon={<DeleteIcon fontSize="small" />} />
             </DialogActions>
         </Dialog>
     );

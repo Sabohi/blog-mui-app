@@ -4,3 +4,8 @@ export const SECTIONS = [
     { title: 'Security', url: '/' },
     { title: 'Latest Visa Requirements', url: '/' },
 ];
+
+export const PATHS = {
+    list: '/',
+    create: 'blog/new',
+};

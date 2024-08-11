@@ -5,16 +5,17 @@ import Button from '@mui/material/Button';
 import { ButtonComponentProps } from 'core/models/ui.model';
 
 const ButtonComponent: React.FC<ButtonComponentProps> = ({
-    onClick,
     text,
+    type="button",
     color='primary',
     variant='outlined',
-    size='small',
+    size='medium',
+    onClick,
     startIcon,
     endIcon
 }) => {
     return (
-        <Button onClick={onClick} color={color} variant={variant} size={size} startIcon={startIcon} endIcon={endIcon}>
+        <Button type={type} onClick={onClick} color={color} variant={variant} size={size} startIcon={startIcon} endIcon={endIcon}>
             {text}
         </Button>
     );

@@ -1,6 +1,7 @@
 export interface ButtonComponentProps {
-    onClick: () => void;
     text: string;
+    type?: 'button' | 'submit' | 'reset';
+    onClick?: () => void;
     color?: 'primary' | 'secondary' | 'success' | 'error';
     variant?: 'text' | 'outlined' | 'contained';
     size?: 'small' | 'medium' | 'large';
@@ -27,6 +28,14 @@ export interface ConfirmationDialogProps {
     message?: string;
 };
 
+export interface HeaderProps {
+    sections?: ReadonlyArray<{
+        title: string;
+        url: string;
+    }>;
+    title: string;
+};
+
 export interface IconButtonWithTooltipProps {
     icon: React.ElementType; 
     title: string;
@@ -46,4 +55,8 @@ export interface Destination {
     title: string;
     body: string;
     image?: string;
+};
+
+export interface BlogFormProps {
+    id?: string;
 };

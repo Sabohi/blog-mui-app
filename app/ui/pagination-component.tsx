@@ -1,6 +1,5 @@
 // external dependencies
 import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
 
 // internal dependencies
 import { PaginationComponentProps } from 'core/models/ui.model';
@@ -11,7 +10,6 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
     onPageChange
 }) => {
     return (
-        <Stack spacing={2}>
         <Pagination
             page={page}
             count={count}
@@ -19,7 +17,6 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
             color="primary"
             shape="rounded"
         />
-        </Stack>
     );
 };
 

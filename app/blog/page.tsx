@@ -5,8 +5,10 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 
 // internal dependencies
-import CardComponent from '@/app/ui/CardComponent';
-import PaginationComponent from '@/app/ui/PaginationComponent';
+import CardComponent from '@/app/ui/card-component';
+import PaginationComponent from '@/app/ui/pagination-component';
+import Header from "@/app/ui/header-component";
+import { SECTIONS } from "@/app/core/config/constant";
 import { Destination } from 'core/models/ui.model';
 
 const destinations: Array<Destination> = [
@@ -45,7 +47,8 @@ const destinations: Array<Destination> = [
 export default function BlogPage() {
     return (
         <Box>
-            <Grid container spacing={5}>
+            <Header title="Travel Blog" sections={SECTIONS} />
+            <Grid container spacing={{ xs: 1, sm: 2, md: 5 }}>
                 {destinations.map((destination) => (
                     <CardComponent key={destination.id} data={destination} />
                 ))}
@@ -53,7 +56,7 @@ export default function BlogPage() {
             <Box
                 display="flex"
                 justifyContent="center"
-                mt={4}
+                mt={{ xs: 1, sm: 2, md: 4 }}
             >
                 <PaginationComponent 
                     page={1}

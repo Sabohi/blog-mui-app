@@ -12,9 +12,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 // Internal dependencies
 import styles from 'theme/card.module.css';
-import IconButtonWithTooltip from 'ui/IconButtonWithTooltip';
+import IconButtonWithTooltip from '@/app/ui/icon-button';
 import { CardComponentProps } from 'core/models/ui.model';
-import ConfirmationDialog from 'ui/ConfirmationDialog'; 
+import ConfirmationDialog from '@/app/ui/confirmation-dialog'; 
 
 const CardComponent: React.FC<CardComponentProps> = ({ data }) => {
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -59,24 +59,24 @@ const CardComponent: React.FC<CardComponentProps> = ({ data }) => {
                             alignItems: 'center',
                             justifyContent: 'flex-end',
                             p: { xs: 0.1, sm: 1 },
-                            gap: { xs: 0.1, sm: 1 },
+                            gap: 0.1,
                             flexWrap: 'wrap',
                             overflow: 'auto',
                         }}
                     >
                         <IconButtonWithTooltip
                             icon={VisibilityIcon}
-                            title="View"
+                            title="View blog"
                             redirectTo={`blog/${data.id}/view`}
                         />
                         <IconButtonWithTooltip
                             icon={EditIcon}
-                            title="Edit"
+                            title="Edit blog"
                             redirectTo={`blog/${data.id}/edit`}
                         />
                         <IconButtonWithTooltip
                             icon={DeleteIcon}
-                            title="Delete"
+                            title="Delete blog"
                             onClick={handleDeleteClick}
                         />
                     </Box>
@@ -87,7 +87,7 @@ const CardComponent: React.FC<CardComponentProps> = ({ data }) => {
                 onClose={handleCloseDialog}
                 onConfirm={handleConfirmDelete}
                 title="Confirm Deletion"
-                message={`Are you sure you want to delete '${data.title}'?`}
+                message={`Are you sure you want to delete this blog - '${data.title}'?`}
             />
         </Grid>
     );

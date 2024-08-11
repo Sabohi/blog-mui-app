@@ -8,9 +8,7 @@ import Box from "@mui/material/Box";
 
 // internal dependencies
 import theme from 'theme/theme';
-import Footer from "app/components/Footer";
-import Header from "app/components/Header";
-import { SECTIONS } from "@/app/core/config/constant";
+import Footer from "@/app/ui/footer-component";
 
 export const metadata: Metadata = {
   title: "Blog App",
@@ -36,7 +34,6 @@ export default function RootLayout({
               }}  
             >
               <Container maxWidth="lg" sx={{ flex: 1 }}>
-                <Header title="Blog" sections={SECTIONS} />
                 {children}
               </Container>
               <Footer
