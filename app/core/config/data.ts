@@ -1,7 +1,11 @@
-
 // Internal dependencies
 import { Destination } from 'core/models/ui.model';
 
+/**
+ * An array of blog destinations, each representing a unique destination with details such as title, author, tags, content, and image.
+ * 
+ * @type {Array<Destination>}
+ */
 export const destinations: Array<Destination> = [
     {
         "id": 1,

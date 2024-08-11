@@ -29,20 +29,20 @@ function ViewPostPage({ params }: { params: { id: string } }) {
                     <Grid container spacing={3}>
                         <Grid item xs={12} md={6}>
                             <Typography variant="h4" gutterBottom>
-                                {post.title}
+                                {post?.title}
                             </Typography>
                             <Typography variant="h6" color="textSecondary">
-                                {`Author: ${post.author}`}
+                                {`Author: ${post?.author}`}
                             </Typography>
                             <Typography variant="body1" paragraph>
-                                {post.body}
+                                {post?.content}
                             </Typography>
                             <Typography variant="body2" color="textSecondary">
-                                {`Tags: ${post.tags}`}
+                                {`Tags: ${post?.tags}`}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={6}>
-                            <img src={post.image} alt={post.title} className={styles.img} />
+                            <img src={post?.image} alt={post?.title} className={styles.img} />
                         </Grid>
                     </Grid>
                 ) : (

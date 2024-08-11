@@ -41,7 +41,7 @@ const CardComponent: React.FC<CardComponentProps> = ({ data }) => {
                 elevation={3}
                 className={styles.paper}
             >
-                <img src={data?.image} alt="Destination Image" className={styles.img} />
+                <img src={data?.image} alt={data?.title} className={styles.img} />
                 <Box
                     sx={{
                         paddingX: 1,
