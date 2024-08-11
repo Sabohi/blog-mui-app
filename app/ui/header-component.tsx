@@ -11,6 +11,18 @@ import { HeaderProps } from 'core/models/ui.model';
 import { PATHS } from 'core/config/constant';
 import IconButtonWithTooltip from 'ui/icon-button';
 
+/**
+ * Header component that displays the title and navigation links with icons.
+ * 
+ * This component typically appears at the top of the page and provides access
+ * to create new blog entries, search for blog posts, and navigate through different sections.
+ * 
+ * @param {HeaderProps} props - The properties to configure the header.
+ * @param {Array<{ title: string; url: string; }>} props.sections - An array of section objects with titles and URLs for navigation links.
+ * @param {string} props.title - The title to display in the header.
+ * 
+ * @returns {JSX.Element} - The rendered header component.
+ */
 export default function Header(props: HeaderProps) {
     const { sections, title } = props;
 
@@ -57,18 +69,18 @@ export default function Header(props: HeaderProps) {
                 sx={{ justifyContent: 'space-between', overflowX: 'auto' }}
             >
                 {sections?.map((section) => (
-                <Link
-                    color="inherit"
-                    noWrap
-                    key={section.title}
-                    variant="body2"
-                    href={section.url}
-                    sx={{ p: 1, flexShrink: 0 }}
-                >
-                    {section.title}
-                </Link>
+                    <Link
+                        color="inherit"
+                        noWrap
+                        key={section.title}
+                        variant="body2"
+                        href={section.url}
+                        sx={{ p: 1, flexShrink: 0 }}
+                    >
+                        {section.title}
+                    </Link>
                 ))}
             </Toolbar>
         </Box>
     );
-}
+};

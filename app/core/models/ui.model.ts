@@ -9,15 +9,17 @@ export interface ButtonComponentProps {
     endIcon?: React.ReactElement;
 };
 
-export interface Destination {
+export type Destination = {
     id: number;
     title: string;
-    body: string;
+    content: string;
     image?: string;
-};
+    author?: string;
+    tags?: string;
+} | undefined;
 
 export interface CardComponentProps {
-    data: Destination    
+    data: Destination;  
 };
 
 export interface ConfirmationDialogProps {
@@ -47,16 +49,5 @@ export interface IconButtonWithTooltipProps {
 export interface PaginationComponentProps {
     page: number;
     count: number;
-    onPageChange: () => void;
-};
-
-export interface Destination {
-    id: number;
-    title: string;
-    body: string;
-    image?: string;
-};
-
-export interface BlogFormProps {
-    id?: string;
+    onPageChange: (page: number) => void;
 };

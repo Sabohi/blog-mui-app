@@ -6,11 +6,21 @@ import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
+/**
+ * `NewBlogLayout` is a layout component used to structure the page for creating a new blog post.
+ * It provides a container with a header and a space for child components, typically used for forms.
+ *
+ * @param {Object} props - The props for the `NewBlogLayout` component.
+ * @param {React.ReactNode} props.children - The content to be rendered within the layout, 
+ *                                           usually a form for creating a blog post.
+ * 
+ * @returns {JSX.Element} The rendered layout component.
+ */
 export default function NewBlogLayout({
-        children,
-    }: Readonly<{
-        children: React.ReactNode;
-    }>) {
+    children,
+}: Readonly<{
+    children: React.ReactNode;
+}>) {
     return (
         <Container maxWidth="md" sx={{ flex: 1 }}>
             <Box>
@@ -23,7 +33,7 @@ export default function NewBlogLayout({
                         noWrap
                         sx={{ flex: 1 }}
                     >
-                        Create a new bog post
+                        Create a new blog post
                     </Typography>
                 </Toolbar>
                 <Box
@@ -36,4 +46,4 @@ export default function NewBlogLayout({
             </Box>
         </Container>
     );
-}
+};

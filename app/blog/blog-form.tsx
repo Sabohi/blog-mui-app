@@ -6,13 +6,12 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { useRouter } from 'next/navigation'; 
 
 // Internal dependencies
 import { FormValues } from 'core/models/blog.model';
-import { BlogFormProps } from 'core/models/ui.model';
+import { CardComponentProps } from 'core/models/ui.model';
 import { PATHS } from 'core/config/constant';
 import ButtonComponent from 'ui/button-component';
 
@@ -22,29 +21,55 @@ const schema = yup.object().shape({
     content: yup.string().required('Content is required'),
     author: yup.string().required('Author is required'),
     tags: yup.string().required('Tags are required'),
+    image: yup.string().required('Image URL is required'), // Corrected validation message
 });
 
-
-const BlogForm: React.FC<BlogFormProps> = ({ id }) => {
+/**
+ * The `BlogForm` component renders a form for creating or updating a blog post.
+ * 
+ * This component utilizes `react-hook-form` for form handling and `yup` for validation. 
+ * It includes fields for title, image, content, author, and tags of the blog post. It also 
+ * provides buttons to submit the form or cancel the action.
+ * 
+ * @param {CardComponentProps} props - The props for the `BlogForm` component.
+ * @param {FormValues} [props.data] - The data of the blog post being edited.
+ * 
+ * @returns {JSX.Element} The rendered form component.
+ */
+const BlogForm: React.FC<CardComponentProps> = ({ data }: CardComponentProps): JSX.Element => {
     const router = useRouter();
 
+    // Initialize form handling with react-hook-form and validation schema
     const { control, handleSubmit, formState: { errors } } = useForm<FormValues>({
         resolver: yupResolver(schema),
+        defaultValues: data || {
+            title: '',
+            content: '',
+            author: '',
+            tags: '',
+            image: ''
+        },
     });
 
-    const onSubmit = (data: FormValues) => {
-        console.log(data);
+    /**
+     * Handles form submission.
+     * 
+     * Logs the form data to the console. This function would typically send data to an API
+     * for saving or updating the blog post.
+     * 
+     * @param {FormValues} data - The form data to be submitted.
+     */
+    const onSubmit = (formData: FormValues) => {
+        console.log(formData);
     };
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <Typography variant="h6" gutterBottom>{id}</Typography>
             <Grid container spacing={2}>
-                <Grid item xs={12} sm={12}>
+                <Grid item xs={12} sm={6}>
                     <Controller
                         name="title"
                         control={control}
-                        defaultValue=""
                         render={({ field }) => (
                             <TextField
                                 {...field}
@@ -57,11 +82,26 @@ const BlogForm: React.FC<BlogFormProps> = ({ id }) => {
                         )}
                     />
                 </Grid>
+                <Grid item xs={12} sm={6}>
+                    <Controller
+                        name="image"
+                        control={control}
+                        render={({ field }) => (
+                            <TextField
+                                {...field}
+                                label="URL of image"
+                                fullWidth
+                                variant="outlined"
+                                error={!!errors.image}
+                                helperText={errors.image?.message}
+                            />
+                        )}
+                    />
+                </Grid>
                 <Grid item xs={12}>
                     <Controller
                         name="content"
                         control={control}
-                        defaultValue=""
                         render={({ field }) => (
                             <TextField
                                 {...field}
@@ -80,7 +120,6 @@ const BlogForm: React.FC<BlogFormProps> = ({ id }) => {
                     <Controller
                         name="author"
                         control={control}
-                        defaultValue=""
                         render={({ field }) => (
                             <TextField
                                 {...field}
@@ -97,7 +136,6 @@ const BlogForm: React.FC<BlogFormProps> = ({ id }) => {
                     <Controller
                         name="tags"
                         control={control}
-                        defaultValue=""
                         render={({ field }) => (
                             <TextField
                                 {...field}
@@ -111,8 +149,8 @@ const BlogForm: React.FC<BlogFormProps> = ({ id }) => {
                     />
                 </Grid>
             </Grid>
-            <Stack   spacing={{ xs: 1, sm: 2 }} direction="row" mt={{ xs: 1, sm: 2, md: 4 }}>
-                <ButtonComponent text={id ? "Update" : "Save"} color="success" type="submit" />
+            <Stack spacing={{ xs: 1, sm: 2 }} direction="row" mt={{ xs: 1, sm: 2, md: 4 }}>
+                <ButtonComponent text={data ? "Update" : "Save"} color="success" type="submit" />
                 <ButtonComponent text="Cancel" onClick={() => router.push(PATHS.list)} color="primary" />
             </Stack>
         </form>

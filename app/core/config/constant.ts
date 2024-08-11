@@ -9,3 +9,7 @@ export const PATHS = {
     list: '/',
     create: 'blog/new',
 };
+
+export const ITEMS_PER_PAGE = 8;
+
+export const CONTENT_LENGTH = 60;

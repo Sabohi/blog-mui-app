@@ -3,4 +3,5 @@ export interface FormValues {
     content: string;
     author: string;
     tags: string;
+    image: string;
 };

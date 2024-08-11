@@ -1,19 +1,23 @@
-// export default function Page({ params }: { params: { id: string } }) {
-//     return <div>New: {params.id}</div>
-// }
 // External dependencies
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-
-// Internal dependencies
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
+/**
+ * `EditBlogLayout` is a React functional component that serves as a layout wrapper
+ * for the blog editing page. It includes a toolbar with a title and a container
+ * for rendering the children components (like forms or content) in the center.
+ *
+ * @param {Object} props - The props for the component.
+ * @param {React.ReactNode} props.children - The content to be rendered inside the layout.
+ * @returns {JSX.Element} The rendered layout with a toolbar and centered content.
+ */
 export default function EditBlogLayout({
-        children,
-    }: Readonly<{
-        children: React.ReactNode;
-    }>) {
+    children,
+}: Readonly<{
+    children: React.ReactNode;
+}>) {
     return (
         <Container maxWidth="md" sx={{ flex: 1 }}>
             <Box>
@@ -26,7 +30,7 @@ export default function EditBlogLayout({
                         noWrap
                         sx={{ flex: 1 }}
                     >
-                        Edit bog post
+                        Edit blog post
                     </Typography>
                 </Toolbar>
                 <Box
@@ -39,4 +43,4 @@ export default function EditBlogLayout({
             </Box>
         </Container>
     );
-}
+};

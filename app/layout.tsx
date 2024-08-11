@@ -6,20 +6,43 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Box from "@mui/material/Box";
 
-// internal dependencies
+// Internal dependencies
 import theme from 'theme/theme';
 import Footer from "@/app/ui/footer-component";
 
+/**
+ * Metadata for the application.
+ * 
+ * @type {Metadata}
+ */
 export const metadata: Metadata = {
   title: "Blog App",
-  description: "A blog application build with Next.js and material UI",
+  description: "A blog application built with Next.js and Material UI",
 };
 
+/**
+ * RootLayout is the top-level layout component for the application.
+ * It provides a consistent layout structure with theming, styling, and routing.
+ * 
+ * This component includes:
+ * - ThemeProvider: Applies the Material-UI theme.
+ * - CssBaseline: Provides a consistent baseline of styles.
+ * - AppRouterCacheProvider: Handles caching for the Next.js App Router.
+ * - Box: A container with flexible layout capabilities.
+ * - Container: Centers and constrains content width.
+ * - Footer: Renders the footer section at the bottom of the page.
+ * 
+ * @param {Object} props - Component props.
+ * @param {React.ReactNode} props.children - The content to be rendered within the layout.
+ * 
+ * @returns {JSX.Element} - The rendered RootLayout component.
+ */
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
+  /** The content to be rendered within the layout. */
   children: React.ReactNode;
-}>) {
+}): JSX.Element {
   return (
     <html lang="en">
       <body>
@@ -46,4 +69,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+};
