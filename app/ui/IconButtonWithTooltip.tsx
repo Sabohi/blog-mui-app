@@ -1,10 +1,18 @@
 // external dependencies 
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
-import PropTypes from 'prop-types';
 import { useRouter } from 'next/navigation'; 
 
-const IconButtonWithTooltip = ({ icon: Icon, title, size="small", onClick, redirectTo }) => {
+// internal dependencies
+import { IconButtonWithTooltipProps } from 'core/models/ui.model';
+
+const IconButtonWithTooltip: React.FC<IconButtonWithTooltipProps> = ({
+    icon: Icon, 
+    title, 
+    onClick, 
+    redirectTo,
+    size='small', 
+}) => {
     const router = useRouter();
     const handleClick = () => {
         if (redirectTo) {
@@ -21,14 +29,6 @@ const IconButtonWithTooltip = ({ icon: Icon, title, size="small", onClick, redir
             </IconButton>
         </Tooltip>
     );
-};
-
-IconButtonWithTooltip.propTypes = {
-    icon: PropTypes.elementType.isRequired,
-    title: PropTypes.string.isRequired,
-    size: PropTypes.string,
-    onClick: PropTypes.func,
-    redirectTo: PropTypes.string,
 };
 
 export default IconButtonWithTooltip;

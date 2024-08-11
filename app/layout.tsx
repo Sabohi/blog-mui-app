@@ -10,7 +10,7 @@ import Box from "@mui/material/Box";
 import theme from 'theme/theme';
 import Footer from "app/components/Footer";
 import Header from "app/components/Header";
-import { SECTIONS } from "core/constant";
+import { SECTIONS } from "@/app/core/config/constant";
 
 export const metadata: Metadata = {
   title: "Blog App",
