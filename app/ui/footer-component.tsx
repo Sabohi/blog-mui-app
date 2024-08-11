@@ -16,7 +16,7 @@ function Copyright() {
     return (
         <Typography variant="body2" color="text.secondary" align="center">
             {'Copyright © '}
-            <Link color="inherit" href="https://www.internationalsos.com/">
+            <Link color="inherit" href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
                 The Subuhi Log 
             </Link>{' '}
             {new Date().getFullYear()}
