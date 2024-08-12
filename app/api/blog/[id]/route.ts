@@ -34,11 +34,11 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     const { title, content, author, tags, image } = await request.json();
     console.log(title, content, author, tags, image);
     try {
-        const { rowCount } = await pool.query(
+        const query = await pool.query(
             'UPDATE blogs SET title = $1, content = $2, author = $3, tags = $4, image = $5 WHERE id = $6',
             [title, content, author, tags, image, id]
         );
-        if (rowCount > 0) {
+        if (query?.rowCount && query?.rowCount > 0) {
             const { rows } = await pool.query('SELECT * FROM blogs WHERE id = $1', [id]);
             return new Response(JSON.stringify(rows[0]), {
                 status: 200,
@@ -68,9 +68,9 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
     const { id } = params;
     
     try {
-        const { rowCount } = await pool.query('DELETE FROM blogs WHERE id = $1', [id]);
+        const query = await pool.query('DELETE FROM blogs WHERE id = $1', [id]);
 
-        if (rowCount > 0) {
+        if (query?.rowCount && query?.rowCount > 0) {
             return new Response(null, { status: 204 }); 
         } else {
             return new Response(

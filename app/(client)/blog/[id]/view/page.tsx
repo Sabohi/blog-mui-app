@@ -1,6 +1,7 @@
 'use client';
 
 // External dependencies
+import Image from 'next/image';
 import { Typography, Paper, Grid, Container } from '@mui/material';
 
 // Internal dependencies
@@ -43,7 +44,7 @@ function ViewPostPage({ params }: { params: { id: string } }) {
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={6}>
-                            <img src={post?.image} alt={post?.title} className={styles.img} />
+                            <Image src={post?.image} alt={post?.title} className={styles.img} />
                         </Grid>
                     </Grid>
                 ) : (
