@@ -39,18 +39,17 @@ export default function BlogList({ destinations }: { destinations: Array<Destina
     // Calculate the total number of pages based on the number of destinations and items per page
     const totalPages = Math.ceil(destinations?.length / ITEMS_PER_PAGE);
 
-    // Slice the destinations array to get the items for the current page
-    const currentItems = destinations?.slice(
+    const currentItems = Array.isArray(destinations) ? destinations?.slice(
         (currentPage - 1) * ITEMS_PER_PAGE, 
         currentPage * ITEMS_PER_PAGE
-    );
+    ): [];
 
     return (
         <Box>
             <Header title="Travel Blog" sections={SECTIONS} />
             <Grid container spacing={{ xs: 1, sm: 2, md: 5 }}>
-                {currentItems?.map((destination) => (
-                    <CardComponent key={destination?.id} data={destination} />
+                {currentItems?.map((blog) => (
+                    <CardComponent key={blog?.id} data={blog} />
                 ))}
             </Grid>
             <Box
