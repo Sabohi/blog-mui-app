@@ -9,7 +9,6 @@ import {
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Image from 'next/image';
 
 // Internal dependencies
 import styles from 'theme/card.module.css';
@@ -77,7 +76,7 @@ const CardComponent: React.FC<CardComponentProps> = ({ data }) => {
                 elevation={3}
                 className={styles.paper}
             >
-                <Image src={data?.image} alt={data?.title} className={styles.img} />
+                <img src={data?.image} alt={data?.title} className={styles.img} />
                 <Box
                     sx={{
                         paddingX: 1,
