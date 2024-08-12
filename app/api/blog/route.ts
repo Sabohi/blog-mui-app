@@ -21,7 +21,6 @@ export async function GET() {
 export async function POST(request: Request) {
     try {
         const { title, content, author, tags, image } = await request.json();
-        console.log(title, content, author, tags, image);
         const result = await pool.query(
         'INSERT INTO blogs (title, content, author, tags, image) VALUES ($1, $2, $3, $4, $5) RETURNING *',
         [title, content, author, tags, image]

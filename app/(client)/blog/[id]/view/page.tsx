@@ -25,33 +25,25 @@ function ViewPostPage({ params }: { params: { id: string } }) {
     return (
         <Container>
             <Paper elevation={3} sx={{ padding: 3 }}>
-                {/* Conditional rendering based on whether the post was found */}
-                {post ? (
-                    <Grid container spacing={3}>
-                        <Grid item xs={12} md={6}>
-                            <Typography variant="h4" gutterBottom>
-                                {post?.title}
-                            </Typography>
-                            <Typography variant="h6" color="textSecondary">
-                                {`Author: ${post?.author}`}
-                            </Typography>
-                            <Typography variant="body1" paragraph>
-                                {post?.content}
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary">
-                                {`Tags: ${post?.tags}`}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <img src={post?.image} alt={post?.title} className={styles.img} />
-                        </Grid>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} md={6}>
+                        <Typography variant="h4" gutterBottom>
+                            {post?.title}
+                        </Typography>
+                        <Typography variant="h6" color="textSecondary">
+                            {`Author: ${post?.author}`}
+                        </Typography>
+                        <Typography variant="body1" paragraph>
+                            {post?.content}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary">
+                            {`Tags: ${post?.tags}`}
+                        </Typography>
                     </Grid>
-                ) : (
-                    // Fallback message when no post is found
-                    <Typography variant="h6" align="center">
-                        No data found for the requested post.
-                    </Typography>
-                )}
+                    <Grid item xs={12} md={6}>
+                        <img src={post?.image} alt={post?.title} className={styles.img} />
+                    </Grid>
+                </Grid>
             </Paper>
         </Container>
     );

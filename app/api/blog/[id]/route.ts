@@ -32,7 +32,6 @@ export async function GET(request: Request, { params }: { params: { id: string }
 export async function PUT(request: Request, { params }: { params: { id: string } }): Promise<Response> {
     const { id } = params;
     const { title, content, author, tags, image } = await request.json();
-    console.log(title, content, author, tags, image);
     try {
         const query = await pool.query(
             'UPDATE blogs SET title = $1, content = $2, author = $3, tags = $4, image = $5 WHERE id = $6',
