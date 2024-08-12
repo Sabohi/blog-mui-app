@@ -1,0 +1,94 @@
+import pool from './../../lib/db';
+// import { Destination } from './../../models/db.model';
+
+export async function GET(request, { params }) {
+    const { id } = params;
+    try {
+        const { rows } = await pool.query('SELECT * FROM blogs WHERE id = $1', [id]);
+        if (rows.length > 0) {
+            return new Response(JSON.stringify(rows[0]), {
+                status: 200,
+                headers: { 'Content-Type': 'application/json' },
+            });
+        } else {
+            return new Response(
+                JSON.stringify({ message: 'Blog not found' }),
+                {
+                    status: 404,
+                    headers: { 'Content-Type': 'application/json' },
+                }
+            );
+        }
+    } catch (error) {
+        return new Response(
+            JSON.stringify({ message: 'Error fetching blog' }),
+            {
+                status: 500,
+                headers: { 'Content-Type': 'application/json' },
+            }
+        );
+    }
+}
+
+export async function PUT(request, { params }) {
+    const { id } = params;
+    const { title, content, author, tags, image } = await request.json();
+    console.log(title, content, author, tags, image);
+    try {
+        const { rowCount } = await pool.query(
+            'UPDATE blogs SET title = $1, content = $2, author = $3, tags = $4, image = $5 WHERE id = $6',
+            [title, content, author, tags, image, id]
+        );
+        if (rowCount > 0) {
+            const { rows } = await pool.query('SELECT * FROM blogs WHERE id = $1', [id]);
+            return new Response(JSON.stringify(rows[0]), {
+                status: 200,
+                headers: { 'Content-Type': 'application/json' },
+            });
+        } else {
+            return new Response(
+                JSON.stringify({ message: 'Blog not found' }),
+                {
+                    status: 404,
+                    headers: { 'Content-Type': 'application/json' },
+                }
+            );
+        }
+    } catch (error) {
+        return new Response(
+            JSON.stringify({ message: 'Error updating blog' }),
+            {
+                status: 500,
+                headers: { 'Content-Type': 'application/json' },
+            }
+        );
+    }
+}
+
+export async function DELETE(request, { params }) {
+    const { id } = params;
+    
+    try {
+        const { rowCount } = await pool.query('DELETE FROM blogs WHERE id = $1', [id]);
+
+        if (rowCount > 0) {
+            return new Response(null, { status: 204 }); 
+        } else {
+            return new Response(
+                JSON.stringify({ message: 'Blog not found' }),
+                {
+                    status: 404,
+                    headers: { 'Content-Type': 'application/json' },
+                }
+            );
+        }
+    } catch (error) {
+        return new Response(
+            JSON.stringify({ message: 'Error deleting blog' }),
+            {
+                status: 500,
+                headers: { 'Content-Type': 'application/json' },
+            }
+        );
+    }
+}

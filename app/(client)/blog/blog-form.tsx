@@ -14,6 +14,8 @@ import { FormValues } from 'core/models/blog.model';
 import { CardComponentProps } from 'core/models/ui.model';
 import { PATHS } from 'core/config/constant';
 import ButtonComponent from 'ui/button-component';
+import { createBlog, updateBlog } from 'core/api/blog';
+import { useBlogById, useBlogs } from 'core/hooks/useBlogs';
 
 // The schema definition for validation
 const schema = yup.object().shape({
@@ -37,6 +39,10 @@ const schema = yup.object().shape({
  * @returns {JSX.Element} The rendered form component.
  */
 const BlogForm: React.FC<CardComponentProps> = ({ data }: CardComponentProps): JSX.Element => {
+    const { mutate: mutateBlogs } = useBlogs();
+    const { mutate: mutateBlogById } = useBlogById(data?.id); 
+
+
     const router = useRouter();
 
     // Initialize form handling with react-hook-form and validation schema
@@ -54,13 +60,25 @@ const BlogForm: React.FC<CardComponentProps> = ({ data }: CardComponentProps): J
     /**
      * Handles form submission.
      * 
-     * Logs the form data to the console. This function would typically send data to an API
-     * for saving or updating the blog post.
+     * Submits data to an API endpoint depending on whether we are creating a new blog post
+     * or updating an existing one.
      * 
-     * @param {FormValues} data - The form data to be submitted.
+     * @param {FormValues} formData - The form data to be submitted.
      */
-    const onSubmit = (formData: FormValues) => {
-        console.log(formData);
+    const onSubmit = async (formData: FormValues) => {
+        try {
+            if (data) {
+                await updateBlog(data.id, formData, mutateBlogs, mutateBlogById);
+                alert('Blog updated successfully');
+            } else {
+                await createBlog(formData, mutateBlogs);
+                alert('Blog created successfully');
+            }
+            router.push(PATHS.list);
+        } catch (error) {
+            console.error(error);
+            alert('An error occurred while saving the blog');
+        }
     };
 
     return (

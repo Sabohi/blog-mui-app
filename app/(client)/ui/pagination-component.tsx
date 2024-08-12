@@ -1,3 +1,5 @@
+'use client';
+
 // External dependencies
 import Pagination from '@mui/material/Pagination';
 

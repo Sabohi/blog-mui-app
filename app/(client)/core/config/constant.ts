@@ -36,3 +36,9 @@ export const ITEMS_PER_PAGE = 8;
  * @type {number}
  */
 export const CONTENT_LENGTH = 60;
+
+const Base_Path = 'http://localhost:3000/api/';
+
+export const API_ENDPOINTS = {
+    blog: Base_Path + 'blog',
+};

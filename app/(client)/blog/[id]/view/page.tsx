@@ -1,9 +1,11 @@
+'use client';
+
 // External dependencies
-import { Box, Typography, Paper, Grid, Container } from '@mui/material';
+import { Typography, Paper, Grid, Container } from '@mui/material';
 
 // Internal dependencies
 import styles from 'theme/view.module.css';
-import { destinations } from 'core/config/data';
+import { useBlogById } from 'core/hooks/useBlogs';
 
 /**
  * `ViewPostPage` is a React functional component that displays a single blog post
@@ -18,8 +20,7 @@ import { destinations } from 'core/config/data';
  * @returns {JSX.Element} The component rendering a blog post or a "No data found" message.
  */
 function ViewPostPage({ params }: { params: { id: string } }) {
-    // Find the post by ID
-    const post = params?.id ? destinations.find((post) => post?.id === Number(params.id)) : null;
+    const { post, isLoading, isError, mutate } = useBlogById(params?.id);
 
     return (
         <Container>

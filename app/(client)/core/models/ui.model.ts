@@ -9,14 +9,14 @@ export interface ButtonComponentProps {
     endIcon?: React.ReactElement;
 };
 
-export type Destination = {
-    id: number;
+export interface Destination {
+    id: string;
     title: string;
     content: string;
-    image?: string;
-    author?: string;
-    tags?: string;
-} | undefined;
+    image: string;
+    author: string;
+    tags: string;
+};
 
 export interface CardComponentProps {
     data?: Destination;  
