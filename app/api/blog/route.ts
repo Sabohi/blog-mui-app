@@ -19,7 +19,7 @@ export async function GET() {
     }
 }
 
-export async function POST(request) {
+export async function POST(request: Destination) {
     try {
         const { title, content, author, tags, image } = await request.json();
         console.log(title, content, author, tags, image);

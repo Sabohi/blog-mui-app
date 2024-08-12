@@ -1,7 +1,6 @@
 import pool from './../../lib/db';
-// import { Destination } from './../../models/db.model';
 
-export async function GET(request, { params }) {
+export async function GET(request: Request, { params }: { params: { id: string } }): Promise<Response> {
     const { id } = params;
     try {
         const { rows } = await pool.query('SELECT * FROM blogs WHERE id = $1', [id]);
@@ -30,7 +29,7 @@ export async function GET(request, { params }) {
     }
 }
 
-export async function PUT(request, { params }) {
+export async function PUT(request: Request, { params }: { params: { id: string } }): Promise<Response> {
     const { id } = params;
     const { title, content, author, tags, image } = await request.json();
     console.log(title, content, author, tags, image);
@@ -65,7 +64,7 @@ export async function PUT(request, { params }) {
     }
 }
 
-export async function DELETE(request, { params }) {
+export async function DELETE(request: Request, { params }: { params: { id: string } }): Promise<Response> {
     const { id } = params;
     
     try {
