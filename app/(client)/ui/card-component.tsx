@@ -12,10 +12,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 // Internal dependencies
 import styles from 'theme/card.module.css';
-import IconButtonWithTooltip from '@/app/ui/icon-button';
+import IconButtonWithTooltip from 'app/ui/icon-button';
 import { CardComponentProps } from 'core/models/ui.model';
 import { CONTENT_LENGTH } from 'core/config/constant';
-import ConfirmationDialog from '@/app/ui/confirmation-dialog'; 
+import ConfirmationDialog from 'app/ui/confirmation-dialog'; 
+import { deleteBlog } from 'core/api/blog';
+import { useBlogs, useBlogById } from 'core/hooks/useBlogs';
 
 /**
  * A component that displays a card for a blog post with options to view, edit, or delete.
@@ -34,6 +36,9 @@ import ConfirmationDialog from '@/app/ui/confirmation-dialog';
  * @returns {JSX.Element} The rendered card component with interactive buttons and a confirmation dialog.
  */
 const CardComponent: React.FC<CardComponentProps> = ({ data }) => {
+    const { mutate: mutateBlogs } = useBlogs();
+    const { mutate: mutateBlogById } = useBlogById(data?.id); 
+
     const [dialogOpen, setDialogOpen] = useState(false);
 
     /**
@@ -53,8 +58,8 @@ const CardComponent: React.FC<CardComponentProps> = ({ data }) => {
     /**
      * Confirms the deletion of the blog post and logs the action to the console.
      */
-    const handleConfirmDelete = () => {
-        console.log('Deleting blog:', data?.title);
+    const handleConfirmDelete = async () => {
+        deleteBlog(data?.id, mutateBlogs, mutateBlogById);
         setDialogOpen(false);
     };
 

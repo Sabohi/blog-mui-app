@@ -1,7 +1,8 @@
+'use client';
+
 // Internal dependencies
-import { destinations } from 'core/config/data';
 import BlogForm from 'app/blog/blog-form';
-import { Destination } from 'core/models/ui.model';
+import { useBlogById } from 'core/hooks/useBlogs';
 
 /**
  * `EditPostPage` is a React functional component that renders the `BlogForm` component
@@ -13,7 +14,8 @@ import { Destination } from 'core/models/ui.model';
  * @returns {JSX.Element} The rendered `BlogForm` component with the blog post ID.
  */
 function EditPostPage({ params }: { params: { id: string } }) {
-    const post = params?.id ? destinations.find((post) => post?.id === Number(params.id)) : {} as Destination;
+    const { post, isLoading, isError, mutate } = useBlogById(params?.id);
+
     return (
         <BlogForm data={post} />
     );

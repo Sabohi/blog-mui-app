@@ -6,11 +6,11 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 
 // internal dependencies
-import CardComponent from '@/app/ui/card-component';
-import PaginationComponent from '@/app/ui/pagination-component';
+import CardComponent from 'app/ui/card-component';
+import PaginationComponent from 'app/ui/pagination-component';
 import { ITEMS_PER_PAGE, SECTIONS } from "core/config/constant";
-import { destinations } from 'core/config/data';
-import Header from "@/app/ui/header-component";
+import Header from "app/ui/header-component";
+import { Destination } from 'core/models/ui.model';
 
 /**
  * The `BlogPage` component displays a list of blog destinations with pagination controls.
@@ -21,7 +21,8 @@ import Header from "@/app/ui/header-component";
  * 
  * @returns {JSX.Element} The rendered blog page component.
  */
-export default function BlogPage() {
+export default function BlogList({ destinations }: { destinations: Array<Destination> }) {
+
     const [currentPage, setCurrentPage] = useState<number>(1);
 
     /**
@@ -36,10 +37,10 @@ export default function BlogPage() {
     };
 
     // Calculate the total number of pages based on the number of destinations and items per page
-    const totalPages = Math.ceil(destinations.length / ITEMS_PER_PAGE);
+    const totalPages = Math.ceil(destinations?.length / ITEMS_PER_PAGE);
 
     // Slice the destinations array to get the items for the current page
-    const currentItems = destinations.slice(
+    const currentItems = destinations?.slice(
         (currentPage - 1) * ITEMS_PER_PAGE, 
         currentPage * ITEMS_PER_PAGE
     );
@@ -48,7 +49,7 @@ export default function BlogPage() {
         <Box>
             <Header title="Travel Blog" sections={SECTIONS} />
             <Grid container spacing={{ xs: 1, sm: 2, md: 5 }}>
-                {currentItems.map((destination) => (
+                {currentItems?.map((destination) => (
                     <CardComponent key={destination?.id} data={destination} />
                 ))}
             </Grid>

@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 
 // Internal dependencies
 import theme from 'theme/theme';
-import Footer from "@/app/ui/footer-component";
+import Footer from "app/ui/footer-component";
 
 /**
  * Metadata for the application.

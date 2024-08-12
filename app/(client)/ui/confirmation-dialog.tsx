@@ -9,7 +9,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 // Internal dependencies
 import { ConfirmationDialogProps } from 'core/models/ui.model';
-import ButtonComponent from '@/app/ui/button-component';
+import ButtonComponent from 'app/ui/button-component';
 
 /**
  * A confirmation dialog used to prompt the user for confirmation before performing an action, such as deletion.
