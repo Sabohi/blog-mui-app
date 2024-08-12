@@ -1,5 +1,4 @@
 import useSWR from 'swr';
-// import { FormValues } from 'core/models/blog.model';
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
