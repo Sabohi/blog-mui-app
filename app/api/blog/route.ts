@@ -1,5 +1,4 @@
 import pool from './../lib/db';
-import { Destination } from './../models/db.model';
 
 export async function GET() {
     try {
